@@ -1,7 +1,6 @@
 #!/bin/bash
 # this code is part of azure-sh framework
 
-echo Script name: $0
 if [ "$#" -ne 1 ]; then
     echo "illegal number of parameters - usage './cleanup_rg.sh resource_group_name"
     echo "example: ./cleanup_rg.sh my-group"
@@ -12,7 +11,7 @@ resource_group=$1
 
 
 echo "Clean up all resources in resource group : $resource_group"
-output=`azure resource list $resource_group  --json`
+output=`azure resource list -g $resource_group  --json`
 #output=`azure resource list $resource_group  --json > out`
 #output=`cat out`
 #output="$(< out)"
@@ -32,7 +31,7 @@ do
 
 	# nice trick, get first and most new api-version, nevermind about resourcename, hope it works fine for all Microsoft* resource:-)
 	api_version=$(azure provider show $resource_provider  --json | jq --raw-output ' .resourceTypes | .[] | .apiVersions[0]' | sort -u -r | grep -v preview | head -n 1)
-        echo "delete resource : " $i ", provider: " $resource_provider ", type = " $type ", apiVersion: " $api_version
+        echo "Deleted resource :" $i", resource group : "$resource_group", provider: " $resource_provider ", type = " $type ", apiVersion: " $api_version
 
 # use that for debugging
 #       echo "azure resource show --resource-group" $resource_group "--name" $i "--resource-type" $type "--api-version" $api_version
