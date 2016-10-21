@@ -38,7 +38,7 @@ You need to install [JQ tool for JSON parsing](https://stedolan.github.io) - ins
 * Full list of all resource groups 
 It's not a really part of azure-sh, just oneline helper - we do skip first 4 lines there because it's just header, not a names
 ```
-azure resource list | tail -n +5 | awk ' {print $3} ' | sort -u
+azure resource list | tail -n +5 | awk ' {print $4} ' | sort -u
 ```
 
 * Cleaup all resources inside specified resource group
