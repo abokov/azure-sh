@@ -17,6 +17,8 @@ You need to install [JQ tool for JSON parsing](https://stedolan.github.io) - ins
 *tbd* how to get/build from github source code 
 
 --------
+link : https://azure.microsoft.com/en-gb/documentation/articles/xplat-cli-install/
+--------
 
 ### Quick reference
 
